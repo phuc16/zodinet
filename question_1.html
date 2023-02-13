@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="output"></p>
+
+    <button type="button" onclick="fetch()">Fetch</button>
+    <button type="button" onclick="create()">Create</button>
+
+    <script>
+        function fetch() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('GET', 'https://jsonplaceholder.typicode.com/posts', false);
+            xhttp.send();
+            document.getElementById('output').innerHTML = xhttp.responseText;
+        }
+
+        function create(userId, title, body) {
+            params = {
+                title: title,
+                body: body
+            }
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('POST', `https://jsonplaceholder.typicode.com/posts?userId=${userId}`, false);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(params));
+            document.getElementById('output').innerHTML = xhttp.responseText;
+        }
+    </script>
+</body>
+
+</html>
